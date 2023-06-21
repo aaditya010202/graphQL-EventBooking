@@ -19,6 +19,19 @@ const events = async (eventIds) => {
     throw err;
   }
 };
+
+const singleEvent = async (eventIds) => {
+  try {
+    const event = await Event.findOne(eventIds);
+    return {
+      ...event._doc,
+      _id: event._id,
+      creator: user.bind(this, event.creator), //user is the constant user
+    };
+  } catch (err) {
+    throw err;
+  }
+};
 const user = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -60,6 +73,8 @@ module.exports = {
         return {
           ...booking._doc,
           id: booking.id,
+          user: user.bind(this, booking._doc.user),
+          event: singleEvent.bind(this, booking._doc.event),
           createdAt: new Date(booking._doc.createdAt).toISOString(),
           updatedAt: new Date(booking._doc.updatedAt).toISOString(),
         };
@@ -140,8 +155,25 @@ module.exports = {
     return {
       ...result._doc,
       _id: result.id,
+      user: user.bind(this, booking._doc.user),
+      event: singleEvent.bind(this, booking._doc.event),
       createdAt: new Date(result._doc.createdAt).toISOString(),
       updatedAt: new Date(result._doc.updatedAt).toISOString(),
     };
+  },
+
+  cancelBooking: async (args) => {
+    try {
+      const booking = await Booking.findById(args.bookingId).populate("event");
+      const event = {
+        ...booking.event._doc,
+        _id: booking.event.id,
+        creator: user.bind(this, booking.event._doc.creator),
+      };
+      await Booking.deleteOne({ _id: args.bookingId });
+      return event;
+    } catch (err) {
+      throw err;
+    }
   },
 };
