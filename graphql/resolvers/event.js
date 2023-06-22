@@ -1,6 +1,7 @@
 const { dateToString } = require("../helpers/date");
 const { transformEvent } = require("./merge");
 const Event = require("../../models/event");
+const User = require("../../models/user");
 module.exports = {
   events: async () => {
     try {
@@ -16,7 +17,7 @@ module.exports = {
     }
   },
 
-  createEvent: async (args) => {
+  createEvent: async (args, req) => {
     // const event = {
     //   _id: Math.random().toString(),
     //   title: args.eventInput.title,
@@ -25,12 +26,16 @@ module.exports = {
     //   date: args.eventInput.date,
     // };
 
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated!");
+    }
+
     const event = new Event({
       title: args.eventInput.title,
       description: args.eventInput.description,
       price: +args.eventInput.price, // + is to make sure that the input is converted to number
       date: dateToString(args.eventInput.date),
-      creator: "6491d0053ff21d56adff416e",
+      creator: req.userId,
     });
 
     let createdEvent;
@@ -39,7 +44,7 @@ module.exports = {
         .save();
 
       createdEvent = transformEvent(result);
-      const creator = await User.findById("6491d0053ff21d56adff416e");
+      const creator = await User.findById(req.userId);
       // console.log(result);
       //return { ...result._doc, _id: event.id }; // instead of using  _id: event._doc._id.toString()  we can also use  _id: event.id  as .id is inbuilt in mongoose to return id in string
       if (!creator) {
