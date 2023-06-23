@@ -7,19 +7,26 @@ import {
 } from "react-router-dom";
 
 import AuthPage from "./pages/Auth";
-import New from "./pages/new";
+import BookingsPage from "./pages/Bookings";
+import EventsPage from "./pages/Events";
+import MainNavigation from "./components/Navigation/MainNavigation";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/auth" />} />
-        {/* exact is used because / will redirect to any page starting with / so exact means path which has only / and nothing else */}
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/events" element={<New />} />
-        <Route path="/bookings" element={null} />
-      </Routes>
+      {/* <React.Fragment> */}
+      <MainNavigation />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Navigate to="/auth" />} />
+          {/* exact is used because / will redirect to any page starting with / so exact means path which has only / and nothing else */}
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/bookings" element={<BookingsPage />} />
+        </Routes>
+      </main>
+      {/* </React.Fragment> */}
     </Router>
   );
 }
