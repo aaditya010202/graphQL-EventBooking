@@ -1,30 +1,38 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+
+import AuthContext from "../../context/auth-context";
 import "./MainNavigation.css";
-const MainNavigation = (props) => {
-  return (
-    <header className="main-navigation">
-      <div className="main-navigation_logo">
-        <h1>Easy Event</h1>
-      </div>
 
-      <nav className="main-navigation_items">
-        <ul>
-          <li>
-            <NavLink to="/events">events</NavLink>
-          </li>
-          <li>
-            <NavLink to="/bookings">Bookings</NavLink>
-          </li>
-          <li>
-            <NavLink to="/auth">Authenticate</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-};
+const mainNavigation = (props) => (
+  <AuthContext.Consumer>
+    {(context) => {
+      return (
+        <header className="main-navigation">
+          <div className="main-navigation_logo">
+            <h1>EasyEvent</h1>
+          </div>
+          <nav className="main-navigation_items">
+            <ul>
+              {!context.token && (
+                <li>
+                  <NavLink to="/auth">Authenticate</NavLink>
+                </li>
+              )}
+              <li>
+                <NavLink to="/events">Events</NavLink>
+              </li>
+              {context.token && (
+                <li>
+                  <NavLink to="/bookings">Bookings</NavLink>
+                </li>
+              )}
+            </ul>
+          </nav>
+        </header>
+      );
+    }}
+  </AuthContext.Consumer>
+);
 
-export default MainNavigation;
-// NavLink does not allow the page to reload but a normal anchor tag reloads the page
+export default mainNavigation;
