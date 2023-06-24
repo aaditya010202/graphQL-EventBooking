@@ -32,11 +32,11 @@
 
 .main-navigation_items a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .main-navigation_items a:hover,
 .main-navigation_items a:active,
 .main-navigation_items a.active {
-  color: rgb(0, 0, 0);
+  color: white;
 }
