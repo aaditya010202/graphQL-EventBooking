@@ -3,35 +3,3 @@
   max-width: 80%;
   margin: 5rem auto;
 }
-.form-control label,
-.form-control input {
-  width: 100%;
-  display: block;
-}
-
-.form-control label {
-  margin-bottom: 0.5rem;
-}
-
-.form-control {
-  margin-bottom: 1rem;
-}
-
-.form-action button {
-  background: rgb(0, 179, 255);
-  /* font: inherit; */
-  border: 0.2rem solid rgb(0, 179, 255);
-  border-radius: 0.3rem;
-  padding: 0.2rem 1rem;
-  margin: 1rem 0rem;
-  margin-right: 1rem;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.26);
-  color: white;
-  cursor: pointer;
-}
-
-.form-action button:hover,
-.form-action button:active {
-  background: rgb(12, 90, 124);
-  border: 0.2rem solid rgb(12, 90, 124);
-}
