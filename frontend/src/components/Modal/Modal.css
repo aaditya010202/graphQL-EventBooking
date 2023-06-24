@@ -15,6 +15,9 @@
   margin: 0;
   font-size: 1.25rem;
 }
+.modal-content {
+  padding: 1rem;
+}
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -24,6 +27,6 @@
 @media (min-width: 768px) {
   .modal {
     width: 30rem;
-    left: calc(100%-50rem) / 2;
+    left: calc((100% - 30rem) / 2);
   }
 }
