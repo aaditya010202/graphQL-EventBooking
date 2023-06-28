@@ -1,8 +1,9 @@
 import React from "react";
-import "./EventList.js";
-import EventItem from "./EventItem/EventItem";
 
-const EventList = (props) => {
+import EventItem from "./EventItem/EventItem";
+import "./EventList.css";
+
+const eventList = (props) => {
   const events = props.events.map((event) => {
     return (
       <EventItem
@@ -17,7 +18,8 @@ const EventList = (props) => {
       />
     );
   });
+
   return <ul className="event__list">{events}</ul>;
 };
 
-export default EventList;
+export default eventList;
