@@ -14,7 +14,8 @@ const bookingList = (props) => (
           <div className="bookings__item-actions">
             <button
               className="btn"
-              //   onClick={props.onDelete.bind(this, booking._id)}
+              // onClick={props.onDelete.bind(this, booking._id)}
+              onClick={props.onDelete.bind(this, booking._id)}
             >
               Cancel
             </button>

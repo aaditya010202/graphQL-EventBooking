@@ -238,11 +238,11 @@ class EventsPage extends Component {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response) {
-          err.response.json().then((errorData) => {
-            console.log(errorData);
-          });
-        }
+        // if (err.response) {
+        //   err.response.json().then((errorData) => {
+        //     console.log(errorData);
+        //   });
+        // }
       });
   };
 
