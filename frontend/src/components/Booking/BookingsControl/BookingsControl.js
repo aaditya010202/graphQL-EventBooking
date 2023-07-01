@@ -9,12 +9,12 @@ const BookingsControl = (props) => {
       >
         List
       </button>
-      <button
+      {/* <button
         className={props.activeOutputType === "Chart" ? "active" : ""}
         onClick={props.onChange.bind(this, "Chart")}
       >
         Chart
-      </button>
+      </button> */}
     </div>
   );
 };
