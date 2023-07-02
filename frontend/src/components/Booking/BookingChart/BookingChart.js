@@ -1,5 +1,5 @@
 import React from "react";
-// import { Bar as BarChart } from "react-charts";
+import { Bar as BarChart } from "react-charts";
 // var BarChart = require("react-chartjs").Bar;
 const bookings_bucket = {
   Cheap: {
